@@ -4,6 +4,10 @@
       <div class="row">
         
         <h1>Login</h1>
+        
+        <div class="alert alert-danger" *ngIf="displayMessage">
+          You must login before accessing your account or recipes!
+        </div>
 
         <div class="col-sm-12 form-group">
           <label for="email">Email</label>

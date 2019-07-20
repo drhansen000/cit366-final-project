@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AccountService } from '../account.service';
 import { NgForm } from '@angular/forms';
 
@@ -7,16 +7,15 @@ import { NgForm } from '@angular/forms';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
-
+export class LoginComponent implements OnInit, OnDestroy {
   constructor(private accountService: AccountService) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   onSubmit(form: NgForm) {
     const values = form.value;
     this.accountService.accountLogin(values.email, values.password);
   }
 
+  ngOnDestroy() {}
 }
