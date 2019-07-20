@@ -5,9 +5,13 @@ const Meal = require('../models/meal');
 const router = express.Router();
 
 // Get the last meal's position and increment it by one
-var maxMealId = 0;
 function getMaxMealId() {
+    var maxMealId = 0;
     const meals = getMeals();
+    if (!meals) {
+        return maxMealId;
+    }
+
     for(let i = 0; i < meals.length; i++) {
         if(meals[i].id > maxMealId) {
             maxMealId = meals[i].id;
@@ -32,7 +36,7 @@ function getMeals() {
 function getRecipes(cookId, res) {
     Meal.find({cookId: cookId})
     .then(recipes => {
-        res.status(200).json({recipes});
+        res.status(200).json(recipes);
     })
     .catch(error => {
         res.status(500).json({
@@ -47,17 +51,17 @@ router.get('/:cookId', (req, res) => {
 });
 
 // Get a single recipe (to generate the recipe detail)
-router.get('/:mealId', (req, res) => {
-    Meal.findOne({id: req.params.mealId})
-    .then(recipe => {
-        res.status(200).json(recipe);
-    })
-    .catch(error => {
-        res.status(500).json({
-            error: error
-        });
-    });
-});
+// router.get('/:mealId', (req, res) => {
+//     Meal.findOne({id: req.params.mealId})
+//     .then(recipe => {
+//         res.status(200).json(recipe);
+//     })
+//     .catch(error => {
+//         res.status(500).json({
+//             error: error
+//         });
+//     });
+// });
 
 
 // Add a recipe
@@ -106,7 +110,7 @@ router.patch('/:id', (req, res) => {
         meal.save()
         .then(() => {
             // res.status(200).json({message: 'Updated meal ' + req.params.id});
-         getMeals(res);
+         getRecipes(req.body.cookId, res);
         })
         .catch(error => {
             res.status(500).json({error: 'Failed to update meal ' + req.params.id});
@@ -125,7 +129,7 @@ router.delete('/:id', (req, res) => {
 
         Meal.deleteOne({id: req.params.id})
         .then(() => {
-            getMeals(res);
+            getRecipes(meal.cookId, res);
             // res.status(200).json({message: 'Deleted meal ' + req.params.id});
         })
         .catch(error => {

@@ -11,10 +11,14 @@ import { StarredDetailComponent } from './home/starred-detail/starred-detail.com
 import { RecipeDetailComponent } from './recipes/recipe-detail/recipe-detail.component';
 import { MealDetailComponent } from './meals/meal-detail/meal-detail.component';
 import { OrderDetailComponent } from './orders/order-detail/order-detail.component';
+import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
+import { AccountEditComponent } from './account/account-edit/account-edit.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
-  {path: 'account', component: AccountComponent},
+  {path: 'account', component: AccountComponent, children: [
+    {path: 'edit', component: AccountEditComponent}
+  ]},
   {path: 'home', component: HomeComponent},
   {path: 'starred/:id', component: StarredDetailComponent},
   {path: 'login', component: LoginComponent, children: [
@@ -22,7 +26,9 @@ const routes: Routes = [
   ]},
   {path: 'register', component: RegisterComponent},
   {path: 'recipes', component: RecipeComponent, children: [
-    {path: ':id', component: RecipeDetailComponent}
+    {path: 'new', component: RecipeEditComponent},
+    {path: ':id', component: RecipeDetailComponent},
+    {path: ':id/edit', component: RecipeEditComponent}
   ]},
   {path: 'meals', component: MealComponent, children: [
     {path: ':id', component: MealDetailComponent}

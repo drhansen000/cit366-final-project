@@ -1,3 +1,15 @@
-<p>
-  meal-list works!
-</p>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <div class="row">
+      <span class="title pad-left-right">
+        Meals
+      </span>
+    </div>
+  </div>
+  <div class="panel-body">
+    <div *ngFor="let meal of meals">
+      <span>{{ meal.name }}</span>
+
+    </div>
+  </div>
+</div>

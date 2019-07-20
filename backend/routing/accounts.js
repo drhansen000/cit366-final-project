@@ -98,7 +98,6 @@ router.post('/', (req, res) => {
 
 // Login to an account
 router.post('/login', (req, res) => {
-    console.log(JSON.stringify(req.body));
     Account.findOne({
         email: req.body.accountEmail, 
         password: req.body.accountPassword

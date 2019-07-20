@@ -21,6 +21,7 @@ import { OrderComponent } from './orders/order.component';
 import { MealComponent } from './meals/meal.component';
 import { FormsModule } from '@angular/forms';
 import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
+import { AccountEditComponent } from './account/account-edit/account-edit.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component
     RecipeComponent,
     OrderComponent,
     MealComponent,
-    RecipeEditComponent
+    RecipeEditComponent,
+    AccountEditComponent
   ],
   imports: [
     BrowserModule,

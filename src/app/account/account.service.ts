@@ -54,10 +54,9 @@ export class AccountService implements OnInit {
     this.http
     .post<Account>('http://localhost:3000/accounts/login', {accountEmail: email, accountPassword: password})
     .subscribe(response => {
-      console.log('Login was successful');
       const responseObject = JSON.parse(JSON.stringify(response));
       if (responseObject.message) {
-        console.log(responseObject.message);
+        alert(responseObject.message);
       } else {
         this.account = response;
         this.accountId = this.account.id;
