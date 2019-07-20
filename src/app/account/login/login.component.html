@@ -1,3 +1,36 @@
-<p>
-  login works!
-</p>
+<div class="panel panel-default">
+  <div class="panel-body">
+    <form id="contact-edit" #f="ngForm" (ngSubmit)="onSubmit(f)">
+      <div class="row">
+        
+        <h1>Login</h1>
+
+        <div class="col-sm-12 form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" class="form-control required" size="120" max="255" name="email"
+            [ngModel]="account?.email" #email="ngModel" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
+          <div class="alert alert-danger" *ngIf="email.dirty && !email.valid">
+            Enter a valid Email address.
+          </div>
+        </div>
+
+        <div class="col-sm-12 form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" class="form-control required" size="150" max="255" name="password"
+            [ngModel]="account?.password" #password="ngModel" required>
+        </div>
+
+        <div class="row">
+          <button class="btn btn-success" [disabled]="!f.valid">Login</button>
+        </div>
+
+      </div>
+      <div class="row">
+        <hr>
+        <h2>Don't have an Account</h2>
+        <button class="btn btn-success" routerLink="/register" type="button">Create Account</button>
+      </div>
+      
+    </form>
+  </div>
+</div>
