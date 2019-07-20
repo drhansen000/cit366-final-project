@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AccountService } from '../account.service';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -8,13 +9,14 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit, OnDestroy {
-  constructor(private accountService: AccountService) { }
+  constructor(private accountService: AccountService, private router: Router) { }
 
   ngOnInit() {}
 
   onSubmit(form: NgForm) {
     const values = form.value;
     this.accountService.accountLogin(values.email, values.password);
+    this.router.navigate(['/home']);
   }
 
   ngOnDestroy() {}

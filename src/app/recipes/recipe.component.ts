@@ -14,7 +14,7 @@ export class RecipeComponent implements OnInit {
   ngOnInit() {
     if (this.accountService.accountId === -1) {
       alert('You must be logged in before trying to view/edit your recipes!');
-      this.router.navigate(['/login/notLoggedIn']);
+      this.router.navigate(['/login']);
     }
   }
 

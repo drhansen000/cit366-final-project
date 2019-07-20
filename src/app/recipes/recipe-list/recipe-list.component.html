@@ -1,26 +1,17 @@
 <div class="panel panel-default">
-    <div class="panel-heading">
-      <div class="row">
-        <span class="title pad-left-right">
-          Your Recipes
-        </span>
-      </div>
-      <div class="row">
-          <div class="pull-right pad-left-right">
-              <a class="btn btn-success" [routerLink]="['new']">New Recipe</a>
-          </div>
-      </div>
+  <div class="panel-heading">
+    <div class="row">
+      <span class="title pad-left-right">
+        Your Recipes
+      </span>
     </div>
-    <div class="panel-body">
-      <div *ngFor="let recipe of recipes">
-          <a class="list-group-item clearfix" [routerLink]="recipe.id" routerLinkActive="active">
-              <div class="pull-left">
-                  <h4 class="list-group-item-heading">{{ recipe.name }}</h4>
-              </div>
-              <span class="pull-right" *ngIf="recipe.imageUrl?.length > 1">
-                  <img [src]="recipe.imageUrl" alt="{{ recipe.name }}" class="img-responsive" style="max-height: 50px;">
-              </span>
-            </a>
+    <div class="row">
+      <div class="pull-right pad-left-right">
+        <a class="btn btn-success" [routerLink]="['new']">New Recipe</a>
       </div>
     </div>
   </div>
+  <div class="panel-body">
+    <app-recipe-item *ngFor="let recipe of recipes" [recipe]="recipe"></app-recipe-item>
+  </div>
+</div>

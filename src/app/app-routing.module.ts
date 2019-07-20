@@ -21,9 +21,7 @@ const routes: Routes = [
   ]},
   {path: 'home', component: HomeComponent},
   {path: 'starred/:id', component: StarredDetailComponent},
-  {path: 'login', component: LoginComponent, children: [
-    {path: ':notLoggedIn', component: LoginComponent}
-  ]},
+  {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'recipes', component: RecipeComponent, children: [
     {path: 'new', component: RecipeEditComponent},
