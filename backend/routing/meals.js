@@ -6,10 +6,8 @@ const router = express.Router();
 
 // Get all of the meals
 function getMeals(res) {
-    console.log('Server is getting meals');
     Meal.find()
     .then(meals => {
-        console.log('Server found meals');
         res.status(200).json(meals);
     })
     .catch(error => {

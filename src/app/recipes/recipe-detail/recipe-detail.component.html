@@ -1,11 +1,11 @@
 <div class="panel panel-default">
-    <div class="panel-heading">
+    <div class="panel-heading text-center">
       <h2>{{recipe?.name}}</h2>
-      <img src="{{recipe?.imageUrl}}" alt="{{recipe?.name}}" *ngIf="recipe.imageUrl?.length > 1">
-      <div class="pull-right">
-        <button class="btn btn-primary text-center" routerLink="edit">Edit</button>
-        <button class="btn btn-danger" (click)="onDelete()">Delete</button>
+      <div>
+          <button class="btn btn-primary" routerLink="edit">Edit</button>
+          <button class="btn btn-danger" (click)="onDelete()">Delete</button>
       </div>
+      <img src="{{recipe?.imageUrl}}" alt="{{recipe?.name}}" *ngIf="recipe.imageUrl?.length > 1" class="img-responsive center-block">
     </div>
     <div class="panel-body">
       <p><strong>Description:</strong>{{recipe?.description}}</p>

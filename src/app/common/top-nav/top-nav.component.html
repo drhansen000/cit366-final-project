@@ -1,22 +1,22 @@
 <div class="navbar navbar-default">
   <div class="container-fluid">
+    <div class="navbar-header">
+      <a routerLink="/meals" class="navbar-brand">Simmer</a>
+    </div>
     <ul class="nav navbar-nav">
       <li>
         <a routerLink="/recipes">Your Recipes</a>
       </li>
       <li>
-        <a routerLink="/orders">Your Orders</a>
-      </li>
-      <li>
         <a routerLink="/meals">Meals</a>
       </li>
     </ul>
-    <div class="navbar-header">
-      <a routerLink="/home" class="navbar-brand">Simmer</a>
-    </div>
-    <ul class="nav navbar-nav">
-      <li>
+    <ul class="nav navbar-nav pull-right">
+      <li *ngIf="loggedIn">
         <a routerLink="/account">Account</a>
+      </li>
+      <li *ngIf="!loggedIn">
+        <a routerLink="/login">Login</a>
       </li>
     </ul>
   </div>

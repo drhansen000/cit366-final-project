@@ -1,3 +1,9 @@
-<p>
-  meal-item works!
-</p>
+<a class="list-group-item clearfix" [routerLink]="meal.id" routerLinkActive="active">
+    <div class="pull-left">
+      <h4 class="list-group-item-heading">{{ meal.name }}</h4>
+    </div>
+    <span class="pull-right" *ngIf="meal.imageUrl?.length > 1">
+      <img [src]="meal.imageUrl" alt="{{ meal.name }}" class="img-responsive" style="max-height: 50px;">
+    </span>
+  </a>
+  

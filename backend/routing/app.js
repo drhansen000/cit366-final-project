@@ -3,7 +3,6 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const accountsRoute = require('./accounts');
 const mealsRoute = require('./meals');
-const ordersRoute = require('./orders');
 const recipeRoute = require('./recipes');
 
 // Create a connection to MongoDb
@@ -40,7 +39,6 @@ app.use((req, res, next) => {
 app.use('/accounts', accountsRoute);
 app.use('/meals', mealsRoute);
 app.use('/recipes', recipeRoute)
-app.use('/orders', ordersRoute);
 
 // Navigate back to the Angular app if the route is empty
 app.get('/', (req, res) => {

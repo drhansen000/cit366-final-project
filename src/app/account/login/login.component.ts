@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   onSubmit(form: NgForm) {
     const values = form.value;
     this.accountService.accountLogin(values.email, values.password);
-    this.router.navigate(['/home']);
+    this.router.navigate(['/meals']);
   }
 
   ngOnDestroy() {}

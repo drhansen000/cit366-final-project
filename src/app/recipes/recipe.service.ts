@@ -46,6 +46,20 @@ export class RecipeService {
     });
   }
 
+  updateRecipe(originalRecipe: Meal, newRecipe: Meal) {
+    if (!originalRecipe || !newRecipe) {
+      console.log('Missing a recipe!');
+      return;
+    }
+
+    newRecipe.id = originalRecipe.id;
+    this.http.patch('http://localhost:3000/recipes/' + originalRecipe.id, newRecipe)
+    .subscribe((recipes: Meal[]) => {
+      this.recipes = recipes;
+      this.recipesListChanged.next(this.recipes.slice());
+    });
+  }
+
   deleteRecipe(meal: Meal) {
     if (!meal) {
       console.log('No meal passed!');

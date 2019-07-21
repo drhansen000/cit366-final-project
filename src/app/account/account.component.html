@@ -1,3 +1,52 @@
-<p>
-  account works!
-</p>
+<div class="panel panel-default col-md-10" >
+        <div class="panel-body">
+          <form id="contact-edit" #f="ngForm" (ngSubmit)="onSubmit(f)">
+            <div class="row">
+            <h1>Create an Account</h1>
+              <div class="col-sm-12 form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" class="form-control required" size="120" max="120" name="name"
+                  [ngModel]="account?.name" #name="ngModel" required>
+              </div>
+      
+              <div class="col-sm-12 form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" class="form-control required" size="120" max="255" name="email"
+                  [ngModel]="account?.email" #email="ngModel" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
+                <div class="alert alert-danger" *ngIf="email.dirty && !email.valid">
+                  Enter a valid Email address.
+                </div>
+              </div>
+      
+              <div class="col-sm-12 form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" class="form-control" size="150" max="255" name="phone"
+                  [ngModel]="account?.phone" #phone="ngModel" pattern="\D*([2-9]\d{2})(\D*)([2-9]\d{2})(\D*)(\d{4})\D*">
+                <div class="alert alert-danger" *ngIf="phone.dirty && !phone.valid">
+                  Enter a valid phone number.
+                </div>
+              </div>
+              <div class="col-sm-12 form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" class="form-control required" size="150" max="255" name="password"
+                  [ngModel]="account?.password" #password="ngModel" pattern=".{8,}" required>
+                <div class="alert alert-danger" *ngIf="password.dirty && !password.valid">
+                  Enter a valid password.
+                </div>
+              </div>
+              <div class="alert alert-danger"
+                *ngIf="(name.touched && !name.valid) || (email.touched && !email.valid) || (password.touched && !password.valid)">
+                The Name, Email, and Password are required.
+              </div>
+              
+              <div class="row">
+                <div class="col-xs-12">
+                  <button class="btn btn-success" type="submit" [disabled]="!f.valid"> Save Changes</button>
+                  <button class="btn btn-primary" type="button" routerLink="/meals">Cancel</button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      

@@ -108,9 +108,9 @@ router.post('/', (req, res) => {
 // Change a recipe
 router.patch('/:id', (req, res) => {
   Meal.findOne({
-    id: req.params.mealId
+    id: req.params.id
   }, (error, meal) => {
-    if (error || !meal) {
+    if (error || meal === null || meal === undefined) {
       return res.status(500).json({
         message: 'ERROR: Recipe ' + req.params.id + ' not found!'
       });

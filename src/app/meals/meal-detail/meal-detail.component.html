@@ -1,3 +1,11 @@
-<p>
-  meal-detail works!
-</p>
+<div class="panel panel-default">
+    <div class="panel-heading">
+      <h2>{{meal?.name}}</h2>
+      <img src="{{meal?.imageUrl}}" alt="{{meal?.name}}" *ngIf="meal.imageUrl?.length > 1" class="img-responsive">
+    </div>
+    <div class="panel-body">
+      <p><strong>Description:</strong>{{meal?.description}}</p>
+      <p><strong>Ingredients:</strong>{{meal?.ingredients}}</p>
+    </div>
+  </div>
+  

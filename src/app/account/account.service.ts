@@ -1,17 +1,19 @@
-import { Injectable, OnInit } from '@angular/core';
+import { Injectable, OnInit, EventEmitter } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { Account } from 'src/app/account/account.model';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AccountService implements OnInit {
   accounts: Account[] = [];
-  loggedIn = false;
   accountId = -1;
   account: Account;
   maxAccountId = 0;
+  loginEvent = new Subject<boolean>();
+  AccountChangedEvent = new Subject<Account>();
 
   constructor(private http: HttpClient) {
     this.getAccountMaxId();
@@ -60,7 +62,7 @@ export class AccountService implements OnInit {
       } else {
         this.account = response;
         this.accountId = this.account.id;
-        this.loggedIn = true;
+        this.loginEvent.next(true);
       }
     },
     error => {
@@ -83,8 +85,16 @@ export class AccountService implements OnInit {
   }
 
   // Change the currently logged in to account with the new information provided.
-  updateAccount() {
-
+  updateAccount(originalAccount, newAccount) {
+    if (!originalAccount || !newAccount) {
+      console.log('Missing an account!');
+      return;
+    }
+    this.http.patch<Account>('http://localhost:3000/accounts/' + originalAccount.id, newAccount)
+    .subscribe(account => {
+      this.account = account;
+      this.AccountChangedEvent.next(this.account);
+    });
   }
 
   /*

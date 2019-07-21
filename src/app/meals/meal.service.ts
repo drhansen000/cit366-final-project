@@ -9,8 +9,8 @@ export class MealService {
   meals: Meal[] = [];
   mealSelectedEvent = new EventEmitter<Meal>();
   mealsListChanged = new EventEmitter<Meal[]>();
-  
-  constructor(private http: HttpClient) { 
+
+  constructor(private http: HttpClient) {
     this.getMeals();
   }
 

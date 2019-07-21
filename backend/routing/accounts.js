@@ -15,18 +15,18 @@ function getMaxAccountId(accounts) {
     return ++maxAccountId;
 }
 
-function getAccounts(res) {
-    Account.find()
-    .then(accounts => {
-        getMaxAccountId(accounts);
-        res.status(200).json(accounts);
-    })
-    .catch(error => {
-        res.status(500).json({
-            error: error
-        });
-    });
-}
+// function getAccounts(res) {
+//     Account.find()
+//     .then(accounts => {
+//         getMaxAccountId(accounts);
+//         res.status(200).json(accounts);
+//     })
+//     .catch(error => {
+//         res.status(500).json({
+//             error: error
+//         });
+//     });
+// }
 
 function emailAvailable(account, res) {
     Account.findOne({email: account.email})
@@ -67,9 +67,9 @@ router.get('/getMaxId', (req, res) => {
     })
 });
 // Get all of the accounts (to generate the account list)
-router.get('/', (req, res) => {
-    getAccounts(res);
-});
+// router.get('/', (req, res) => {
+//     getAccounts(res);
+// });
 
 // Get a single account (to generate the account detail)
 router.get('/:email', (req, res) => {
@@ -134,9 +134,8 @@ router.patch('/:id', (req, res) => {
         account.password = req.body.password;
 
         account.save()
-        .then(() => {
-            // res.status(200).json({message: 'Updated account ' + req.params.id});
-         getAccounts(res);
+        .then((account) => {
+            res.status(200).json(account);
         })
         .catch(error => {
             res.status(500).json({error: 'Failed to update account ' + req.params.id});
@@ -145,23 +144,23 @@ router.patch('/:id', (req, res) => {
 });
 
 // Delete an account
-router.delete('/:id', (req, res) => {
-    Account.findOne({id: req.params.id}, (error, account) => {
-        if(error || !account) {
-            res.status(500).json({
-                error: 'Unable to find account ' + req.params.id
-            });
-        }
+// router.delete('/:id', (req, res) => {
+//     Account.findOne({id: req.params.id}, (error, account) => {
+//         if(error || !account) {
+//             res.status(500).json({
+//                 error: 'Unable to find account ' + req.params.id
+//             });
+//         }
 
-        Account.deleteOne({id: req.params.id})
-        .then(() => {
-            getAccounts(res);
-            // res.status(200).json({message: 'Deleted account ' + req.params.id});
-        })
-        .catch(error => {
-            res.status(500).json({error: 'Unable to delete account ' + req.params.id});
-        });
-    });
-});
+//         Account.deleteOne({id: req.params.id})
+//         .then(() => {
+//             getAccounts(res);
+//             // res.status(200).json({message: 'Deleted account ' + req.params.id});
+//         })
+//         .catch(error => {
+//             res.status(500).json({error: 'Unable to delete account ' + req.params.id});
+//         });
+//     });
+// });
 
 module.exports = router;
